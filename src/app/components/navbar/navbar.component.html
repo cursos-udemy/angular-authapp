@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="#">Authapp</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+    aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
@@ -11,13 +12,16 @@
       <li class="nav-item">
         <a class="nav-link" routerLinkActive="active" [routerLink]="['precios']">Precios</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active" [routerLink]="['protegida']">Protegida</a>
+      <li class="nav-item" *ngIf="isAuthenticated()">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['protegida']">
+          Protegida
+        </a>
       </li>
     </ul>
+
     <span class="navbar-text">
-      <button (click)="login()"
-       type="button" class="btn btn-outline-warning">Login</button>
+      <button *ngIf="!isAuthenticated()" (click)="login()"  type="button" class="btn btn-outline-warning btn-sm">Login</button>
+      <button *ngIf="isAuthenticated()" (click)="logout()"  type="button" class="btn btn-outline-warning btn-sm">Logout</button>
     </span>
   </div>
 </nav>
